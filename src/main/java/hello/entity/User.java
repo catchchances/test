@@ -1,5 +1,6 @@
-package hello;
+package hello.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,15 +11,17 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @DynamicUpdate
 @DynamicInsert
-@Entity 
+@Entity
 public class User {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-    private String name;
+	@Column(length = 20)
+	private String name;
 
-    private String email;
+	@Column(length = 20)
+	private String email;
 
 	public Integer getId() {
 		return id;
@@ -43,6 +46,5 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 }
