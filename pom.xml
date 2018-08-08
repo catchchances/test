@@ -28,7 +28,18 @@
 			<artifactId>cglib</artifactId>
 			<version>3.2.7</version>
 		</dependency>
-
-
 	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
