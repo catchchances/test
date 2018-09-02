@@ -3,19 +3,16 @@ package com.kkdz.test.multi_thread.threadKnowledge;
 /**
  * 假如有三个线程T1,T2,T3，如何保证T2在T3之前执行完成，T1在T2之前完成？
  */
-// 以下是错误的写法，会抛异常
 // 本意是：让t2等待。用t1来唤醒它。
 public class RunInOrder2 {
 
 	public static void main(String[] args) {
 		Object o1 = new Object();
 		Object o2 = new Object();
-		for (int i = 0; i < 100; i++) {
-			T1 t1 = new T1(o1, o2);
-			T2 t2 = new T2(o2);
-			t1.start();
-			t2.start();
-		}
+		T1 t1 = new T1(o1, o2);
+		T2 t2 = new T2(o2);
+		t1.start();
+		t2.start();
 	}
 }
 
