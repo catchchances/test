@@ -7,17 +7,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hello.service.MyService;
+import hello.service.UserService;
 
 @Controller
 @RequestMapping(path = "/demo")
 public class MainController {
 
 	@Autowired
-	private MyService userService;
+	private MyService myService;
+	
+	@Autowired
+	private UserService userService;
 
 	@GetMapping(path = "/test")
 	public @ResponseBody void test() {
-		userService.test();
+		myService.test();
+	}
+	
+	@GetMapping(path = "/repotest")
+	public @ResponseBody void repotest() {
+		userService.findByName("xxx");
+//		userService.findByNameByQuery("yyy");
 	}
 
 }
