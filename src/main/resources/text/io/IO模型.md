@@ -39,7 +39,8 @@ ASynchronous IO为异步IO。
 	
 2. 非阻塞IO模型：
 	
-	recvfrom从应用层到内核的时候，如果该缓存区没有数据的话，就直接返回一个EWOULDBLOCK错误。一般都对非阻塞IO模型进行轮询检查这个状态，看内核是不是有数据到来。
+	recvfrom从应用层到内核的时候，如果该缓存区没有数据的话，就直接返回一个EWOULDBLOCK或EAGAIN错误。一般都对非阻塞IO模型进行轮询检查这个状态，看内核是不是有数据到来。  
+	EWOULDBLOCK:e(rror) would block; EAGAIN:e(rror) again;
 	
 3. IO复用模型: 
 
