@@ -1,4 +1,4 @@
-package com.kkdz.test.io.nio.fake;
+package com.kkdz.test.io.bio.fakenio;
 
 import java.io.BufferedReader;
 import java.io.IOException;
