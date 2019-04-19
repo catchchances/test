@@ -2,6 +2,7 @@ package com.kkdz.test.io.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -74,9 +75,21 @@ public class MultiplexerTimeServer implements Runnable {
 			sc.configureBlocking(false);
 			ssChannel.register(selector, SelectionKey.OP_ACCEPT);
 		} else if (key.isReadable()) {
-			
-		} else {
-
+			SocketChannel sc = (SocketChannel) key.channel();
+			ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+			int readBytes = sc.read(readBuffer);
+			if (readBytes > 0) {
+				readBuffer.flip();
+				byte[] bytes = new byte[readBuffer.remaining()];
+				readBuffer.get(bytes);
+				String body = new String(bytes, "UTF-8");
+				System.out.println("the time server recieve order:" + body);
+			} else if (readBytes < 0) {
+				key.cancel();
+				sc.close();
+			} else {
+				// length=0, ignore
+			}
 		}
 	}
 
