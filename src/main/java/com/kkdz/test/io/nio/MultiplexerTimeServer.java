@@ -71,7 +71,7 @@ public class MultiplexerTimeServer implements Runnable {
 		if (key.isAcceptable()) {
 			// accept the new connection
 			ServerSocketChannel ssChannel = (ServerSocketChannel) key.channel();
-			SocketChannel sc = ssChannel.accept();
+			SocketChannel sc = ssChannel.accept();//accept和open方法都是创建SocketChannal实例
 			sc.configureBlocking(false);
 			ssChannel.register(selector, SelectionKey.OP_ACCEPT);
 		} else if (key.isReadable()) {
